@@ -5,10 +5,11 @@ export const testContext = createContext()
 
 const Provider = props => {
   const [tests, setTests] = useState([])
-  const [dataTest, setDataTest] = useState({})
   const [dataForm, setDataForm] = useState({})
   const [dataComponent, setDataComponent] = useState({})
+  const [dataTest, setDataTest] = useState({})
 
+  //Concatenate two objects
   useEffect(() => {
     const data = () => {
       if (
@@ -20,12 +21,14 @@ const Provider = props => {
       const test = Object.assign({}, dataComponent, dataForm)
 
       setDataTest(test)
+      setDataComponent({}) //Reset Object
+      setDataForm({}) //Reset Object
     }
 
     data()
   }, [dataForm, dataComponent])
 
-  //Save Token
+  //Authentication, save Token
   useEffect(() => {
     const guardarToken = async () => {
       await Axios.post('http://bankapimaai.azurewebsites.net/api/Authentication', {
@@ -40,28 +43,33 @@ const Provider = props => {
   }, [])
   // console.log(test)
 
-  // TODO:Send data test
+  // Send data test
   useEffect(() => {
     const sendTestAPI = async () => {
       const { title, status, comments, dateTime, responsible } = dataTest
-      await fetch('https://bankapimaai.azurewebsites.net/api/TestHistory/', {
-        method: 'POST',
-        body: JSON.stringify({
-          title,
-          status,
-          comments,
-          dateTime,
-          responsible
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(res => res.json())
-        .catch(error => console.log(error))
-        .then(response => {
-          console.log(response)
-        })
+      
+      try {
+        const respuesta = await fetch(
+          'https://bankapimaai.azurewebsites.net/api/TestHistory/',
+          {
+            method: 'POST',
+            body: JSON.stringify({
+              title,
+              status,
+              comments,
+              dateTime,
+              responsible
+            }),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+        )
+
+        console.log(respuesta)
+      } catch (error) {
+        console.log(error)
+      }
     }
 
     sendTestAPI()

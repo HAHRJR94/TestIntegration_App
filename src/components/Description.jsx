@@ -7,7 +7,7 @@ const Description = ({ test }) => {
       <hr />
       <p>
         This test serves to check the reability of the <strong>{test}</strong> area. To
-        start you must write your <strong>name like responsible of the test</strong>
+        start you must write your <strong>name like responsible of the test</strong>.
       </p>
     </div>
   )

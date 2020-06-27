@@ -10,22 +10,18 @@ import AuthQuery from './components/tests/AuthQuery'
 import AuthWireTransfer from './components/tests/AuthWireTransfer'
 import AuthWithDrawal from './components/tests/AuthWithDrawal'
 
-
 function App() {
-
   return (
-    <Provider>
+    <Provider> 
       <BrowserRouter>
         <Header />
-        <div className=''>
-          <Switch>
-            <Route exact path='/' component={Dashboard} />
-            <Route exact path='/deposit' component={AuthDeposit} />
-            <Route exact path='/query' component={AuthQuery} />
-            <Route exact path='/transfer' component={AuthWireTransfer} />
-            <Route exact path='/with-drawal' component={AuthWithDrawal} />
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path='/' component={Dashboard} />
+          <Route exact path='/deposit' component={AuthDeposit} />
+          <Route exact path='/query' component={AuthQuery} />
+          <Route exact path='/transfer' component={AuthWireTransfer} />
+          <Route exact path='/with-drawal' component={AuthWithDrawal} />
+        </Switch>
       </BrowserRouter>
     </Provider>
   )

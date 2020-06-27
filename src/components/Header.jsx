@@ -14,7 +14,7 @@ const Header = () => {
               Dashboard
             </NavLink>
           </li>
-          <li className='navbar-item'>
+          <li className='navbar-item ml-3'>
             <NavLink
               to={'/query'}
               className='text-white nav-link font-weight-bold'

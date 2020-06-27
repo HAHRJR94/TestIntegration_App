@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from 'react'
 import { testContext } from '../../context/testContext'
 
-const FormTest = ({ setRequest, history }) => {
+const FormTest = ({ setRequest, setLoad }) => {
   const { setDataForm } = useContext(testContext)
   const responsible = useRef('')
 
@@ -9,15 +9,12 @@ const FormTest = ({ setRequest, history }) => {
     e.preventDefault()
 
     if (responsible === '') {
-      // TODO:Show alert if responsible is void
       return
     }
 
-    // TODO: Send responsible to component
+    setDataForm({ responsible: responsible.current.value })
+    setLoad(true)
     setRequest(true)
-    setDataForm({responsible: responsible.current.value})
-
-    history.push('/')
   }
 
   return (
@@ -35,9 +32,9 @@ const FormTest = ({ setRequest, history }) => {
                 ref={responsible}
               />
             </div>
-            <button type='button' className='btn btn-success btn-block' onClick={() => {
-              
-            }}>Comenzar</button>
+            <button type='submit' className='btn btn-success btn-block'>
+              Comenzar
+            </button>
           </form>
         </div>
       </div>
